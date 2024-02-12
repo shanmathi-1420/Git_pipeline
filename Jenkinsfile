@@ -43,7 +43,7 @@ pipeline {
             emailext (
                 to: "shanmathivlr@gmail.com",
                 subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Failed",
-                body: "The build failed. Please investigate and take necessary actions."
+                body: "The build failed."
             )
         }
     }
