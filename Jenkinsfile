@@ -27,21 +27,21 @@ pipeline {
  post {
         success {
             emailext (
-                to: "abinove1999@gmail.com",
+                to: "shanmathivlr03@gmail.com",
                 subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Successful",
                 body: "The build succeeded. Congratulations!"
             )
         }
         unstable {
             emailext (
-                to: "abinove1999@gmail.com",
+                to: "shanmathivlr@gmail.com",
                 subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Unstable",
                 body: "The build is unstable. Please check."
             )
         }
         failure {
             emailext (
-                to: "abinove1999@gmail.com",
+                to: "shanmathivlr@gmail.com",
                 subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Failed",
                 body: "The build failed. Please investigate and take necessary actions."
             )
