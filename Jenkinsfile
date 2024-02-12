@@ -24,18 +24,30 @@ pipeline {
     
   }
 
-post{
-      always{
-            sh 'docker rm -f mypycont'
-            sh 'docker run --name mypycont -d -p 9000:5000 my-flask'
-            mail to: "abinove1999@gmail.com",
-            subject: "Notification mail from jenkins",
-            body: "CiCd pipeline"
+ post {
+        success {
+            emailext (
+                to: "abinove1999@gmail.com",
+                subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Successful",
+                body: "The build succeeded. Congratulations!"
+            )
         }
-}
+        unstable {
+            emailext (
+                to: "abinove1999@gmail.com",
+                subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Unstable",
+                body: "The build is unstable. Please check."
+            )
+        }
+        failure {
+            emailext (
+                to: "abinove1999@gmail.com",
+                subject: "Build ${env.JOB_NAME} - ${env.BUILD_NUMBER} Failed",
+                body: "The build failed. Please investigate and take necessary actions."
+            )
+        }
+    }
 
 }
-    
-
   
 
